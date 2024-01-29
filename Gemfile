@@ -19,6 +19,8 @@ gem 'rack-cors'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'kaminari'
+
 gem 'byebug'
 
 # Use the Puma web server [https://github.com/puma/puma]
