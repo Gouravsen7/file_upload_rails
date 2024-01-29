@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :authorize_request
-  
   def create
-    email = params[:email].downcase
-    user = User.find_by(email: email, password: params[:password])
-    if user.present?
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      token = jwt_encode(user_id: user.id)
       render json: {
-        message: "Login successfully",
+        message: 'Login successfully',
+        token: token,
         user: UserSerializer.new(user).serializable_hash
       }, status: :ok
     else
-      render json: { message: "Invalid Crendentials" }, status: :unauthorized
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
   end
 end

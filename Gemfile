@@ -15,6 +15,10 @@ gem 'active_model_serializers'
 
 gem 'jwt'
 
+gem 'rack-cors'
+
+gem 'bcrypt', '~> 3.1.7'
+
 gem 'byebug'
 
 # Use the Puma web server [https://github.com/puma/puma]
