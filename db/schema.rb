@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_25_135023) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_29_121934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blacklisted_tokens", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_blacklisted_tokens_on_token"
+  end
 
   create_table "hole_details", force: :cascade do |t|
     t.json "csv_data"

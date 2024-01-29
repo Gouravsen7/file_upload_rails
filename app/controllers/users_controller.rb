@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :authenticate_request, only: :destroy
+
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
@@ -13,5 +15,11 @@ class UsersController < ApplicationController
     else
       render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
+  end
+
+  def destroy
+    token = request.headers['token']&.split(' ')&.last
+    BlacklistedToken.create(token: token) if token.present?
+    render json: { message: 'Logout Successfully' }
   end
 end

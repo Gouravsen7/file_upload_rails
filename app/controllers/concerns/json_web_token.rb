@@ -12,6 +12,13 @@ module JsonWebToken
 
   def jwt_decode(token)
     decoded = JWT.decode(token, SECRET_KEY)[0]
-    HashWithIndifferentAccess.new decoded
+    return nil if check_blacklist(token) || (decoded['exp'] && decoded['exp'] < Time.now.to_i)
+    HashWithIndifferentAccess.new(decoded)
+  rescue JWT::DecodeError => e
+    nil
+  end
+
+  def check_blacklist(token)
+    BlacklistedToken.exists?(token: token)
   end
 end

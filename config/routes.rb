@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   get "up" => "rails/health#show", as: :rails_health_check
   post '/login', to: 'users#create'
+  delete '/logout', to: 'users#destroy'
   resource :file_upload, :controller => "holes", only: [:create]
   resources :data_visualization, :controller => "hole_details", only: %i[index create]
 end
