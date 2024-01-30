@@ -2,7 +2,7 @@
 
 class Hole < ApplicationRecord
   require 'csv'
-  has_many :hole_details, dependent: :destroy
+  has_one :hole_detail, dependent: :destroy
 
   def self.import(file)
     begin

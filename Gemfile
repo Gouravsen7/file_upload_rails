@@ -21,7 +21,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'kaminari'
 
-gem 'byebug'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -52,6 +51,12 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'faker'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 end
 

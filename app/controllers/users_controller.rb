@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         user: UserSerializer.new(user).serializable_hash
       }, status: :ok
     else
-      render json: { error: 'Invalid email or password' }, status: :unauthorized
+      render json: { message: 'Invalid email or password' }, status: :unauthorized
     end
   end
 
